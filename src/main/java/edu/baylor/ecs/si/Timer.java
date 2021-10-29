@@ -30,12 +30,14 @@ public class Timer {
 	
 	public static long timeMe(long timeToWait) throws TimerException {
 		Long timeNow = null;
+		
+		if (timeToWait < 0) {
+			throw new TimerException("Cannot be less than zero");  
+		}
+		
 		try {
-		  if (timeToWait < 0) {
-			  throw new TimerException("Cannot be less than zero");
-		  }
-	      timeNow = System.currentTimeMillis();
-		  method(timeToWait);
+		    timeNow = System.currentTimeMillis();
+			 method(timeToWait);
 			
 		} catch (InterruptedException e) {
 			logger.severe("InterruptedException rised");
